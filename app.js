@@ -124,6 +124,41 @@ class UXHubApp {
         this.timerInterval = null;
         this.startTime = 0;
         this.elapsedTime = 0;
+        
+        this.initLikeButton();
+    }
+
+    // --- INITIALISATION DU BOUTON LIKE ---
+    initLikeButton() {
+        const likeBtn = document.getElementById('like-copyright-link');
+        if (!likeBtn) return;
+
+        likeBtn.addEventListener('click', (e) => {
+            // Créer l'effet d'explosion de cœurs
+            const rect = likeBtn.getBoundingClientRect();
+            const originX = rect.left + rect.width / 2;
+            const originY = rect.top + rect.height / 2;
+
+            for (let i = 0; i < 6; i++) {
+                const heart = document.createElement('span');
+                heart.className = 'floating-heart';
+                heart.textContent = '❤️';
+                heart.style.left = `${originX}px`;
+                heart.style.top = `${originY}px`;
+                
+                // Décalage aléatoire horizontal et timing d'animation
+                const dx = (Math.random() - 0.5) * 100;
+                heart.style.setProperty('--dx', `${dx}px`);
+                heart.style.animationDelay = `${Math.random() * 0.15}s`;
+                
+                document.body.appendChild(heart);
+                
+                // Nettoyer après l'animation
+                setTimeout(() => {
+                    heart.remove();
+                }, 1200);
+            }
+        });
     }
 
     // --- NAVIGATION PRINCIPALE DES LOIS ---
