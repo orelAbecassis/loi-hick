@@ -1252,3 +1252,348 @@ p {
         grid-template-columns: 1fr;
     }
 }
+
+/* HUB DES LOIS NAVIGATION */
+.laws-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+.law-tab-btn {
+    font-family: inherit;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    transition: var(--transition);
+    position: relative;
+}
+
+.law-tab-btn:hover {
+    color: var(--primary);
+}
+
+.law-tab-btn.active {
+    color: var(--primary);
+}
+
+.law-tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1rem;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: var(--primary);
+    border-radius: var(--radius-full);
+}
+
+.law-section {
+    display: none;
+}
+
+.law-section.active {
+    display: block;
+    animation: fadeIn 0.4s ease-out;
+}
+
+/* FITTS'S LAW STYLES */
+.fitts-phone-container {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0;
+}
+
+.phone-mockup {
+    width: 280px;
+    height: 520px;
+    background-color: #111111;
+    border: 12px solid #222222;
+    border-radius: 36px;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+.phone-screen {
+    width: 100%;
+    height: 100%;
+    background-color: #fafbfc;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.fitts-btn-bad {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 8px;
+    height: 8px;
+    background-color: var(--error);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+    padding: 0;
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2);
+}
+
+.fitts-btn-bad:hover {
+    background-color: #c53030;
+}
+
+.fitts-btn-good {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.phone-center-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    font-size: 0.85rem;
+    color: #999999;
+    text-align: center;
+    padding: 2rem;
+}
+
+.phone-mockup-layout {
+    padding: 2rem;
+    background-color: #f3f4f6;
+    display: flex;
+    justify-content: center;
+}
+
+.fitts-mockup-phone {
+    width: 250px;
+    height: 400px;
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.fitts-header-bad {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+}
+
+.btn-tiny-link-bad {
+    font-size: 0.65rem;
+    color: var(--primary);
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.mock-title-phone {
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.fitts-body-bad {
+    padding: 1rem;
+    font-size: 0.75rem;
+    color: var(--text-main);
+    flex: 1;
+}
+
+.fitts-actions-bad {
+    margin-top: 1rem;
+    display: flex;
+    gap: 15px;
+    position: relative;
+}
+
+.btn-danger-bad {
+    font-size: 0.7rem;
+    color: var(--error);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.btn-cancel-bad {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.fitts-header-good {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+}
+
+.btn-back-good {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--text-main);
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.fitts-body-good {
+    padding: 1.2rem;
+    font-size: 0.8rem;
+    color: var(--text-main);
+}
+
+.fitts-actions-good {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #fafbfc;
+    border-top: 1px solid var(--border-color);
+    position: relative;
+}
+
+.btn-danger-good {
+    width: 100%;
+    background-color: var(--error);
+    color: white;
+    border: none;
+    padding: 0.6rem;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-cancel-good {
+    width: 100%;
+    background-color: white;
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    padding: 0.6rem;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* MILLER'S LAW VISUALS */
+.miller-visual-bad {
+    height: 60px;
+    background-color: #e5e7eb;
+    border-radius: 4px;
+    margin: 10px 0;
+    position: relative;
+}
+
+.miller-visual-bad::after {
+    content: '=================================';
+    font-family: monospace;
+    color: #9ca3af;
+    font-size: 0.7rem;
+    position: absolute;
+    top: 30%;
+    left: 10%;
+}
+
+.miller-visual-good {
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 10px 0;
+}
+
+.miller-visual-good::after {
+    content: '• ====\n• ====\n• ====';
+    font-family: monospace;
+    color: var(--primary);
+    font-size: 0.7rem;
+    white-space: pre;
+    text-align: left;
+}
+
+.miller-text-container-bad {
+    background-color: #fafbfc;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    text-align: justify;
+    color: var(--text-main);
+}
+
+.miller-text-container-bad span {
+    cursor: pointer;
+    padding: 0 2px;
+    border-radius: 2px;
+}
+
+.miller-text-container-bad span:hover {
+    background-color: #e2e8f0;
+}
+
+.miller-text-container-good {
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    padding: 2rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-main);
+}
+
+.miller-text-container-good p {
+    margin-bottom: 1.25rem;
+    color: var(--text-main);
+}
+
+.miller-text-container-good ul {
+    padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.miller-text-container-good li {
+    list-style-type: disc;
+}
+
+.miller-text-container-good span.miller-target-word {
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--primary);
+    background-color: var(--primary-light);
+    padding: 2px 6px;
+    border-radius: 4px;
+    transition: background-color 0.15s ease;
+}
+
+.miller-text-container-good span.miller-target-word:hover {
+    background-color: #dbeafe;
+}
+
+.miller-other-clickable {
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.miller-other-clickable:hover {
+    background-color: #f1f5f9;
+}
