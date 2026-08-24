@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Loi de Hick - Cours UI/UX</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <span class="badge">Loi de Hick</span>
+            <h1>« Trop de choix tue le choix »</h1>
+            <p class="subtitle">
+                Plus vous présentez d'options à un utilisateur, plus son cerveau met de temps à prendre une décision. C'est la loi de Hick en UI/UX.
+            </p>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- SECTION 1 : EXPERIMENT CARD -->
+        <section class="card experiment-card" id="experiment-section">
+            <div class="card-header">
+                <h2>L'Expérience Interactive</h2>
+                <p>Mesurez l'impact du nombre de choix sur votre propre temps de réaction.</p>
+            </div>
+            
+            <div class="card-body">
+                <!-- Step 0: Intro -->
+                <div id="step-intro" class="experiment-step active text-center">
+                    <div class="step-illustration">
+                        <div class="choice-visual bad-visual">
+                            <span>48 Choix</span>
+                            <div class="dots-grid">
+                                <span></span><span></span><span></span><span></span><span></span><span></span>
+                                <span></span><span></span><span></span><span></span><span></span><span></span>
+                                <span></span><span></span><span></span><span></span><span></span><span></span>
+                                <span></span><span></span><span></span><span></span><span></span><span></span>
+                            </div>
+                        </div>
+                        <div class="vs-divider">VS</div>
+                        <div class="choice-visual good-visual">
+                            <span>3 Choix</span>
+                            <div class="dots-grid-simple">
+                                <span></span><span></span><span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Prêt à faire le test ?</h3>
+                    <p class="step-desc">
+                        Dans ce test, vous allez devoir trouver et cliquer sur un plat précis le plus vite possible.<br>
+                        Vous comparerez votre temps de réaction dans deux situations :<br>
+                        <strong>Avec surcharge</strong> (48 boutons identiques)<br>
+                        <strong>Avec choix guidé</strong> (navigation par catégories).
+                    </p>
+                    <button class="btn btn-primary btn-large" onclick="app.startExperiment()">Commencer l'expérience</button>
+                </div>
+
+                <!-- Step 1: Pre-test 1 countdown -->
+                <div id="step-countdown-1" class="experiment-step text-center">
+                    <span class="phase-indicator">Phase 1 : Interface surchargée</span>
+                    <h3 class="instruction-text">Cherchez et cliquez sur :</h3>
+                    <div class="target-item">🍕 Pizza Margherita</div>
+                    <p class="countdown-msg">Le test commence dans...</p>
+                    <div class="countdown-number" id="countdown-val-1">3</div>
+                </div>
+
+                <!-- Step 2: Test 1 (Bad Practice Grid) -->
+                <div id="step-test-1" class="experiment-step">
+                    <div class="test-header">
+                        <div>
+                            <span class="phase-indicator">Phase 1 : Interface surchargée</span>
+                            <span class="instruction-prompt">Trouvez : <strong class="highlight-target">🍕 Pizza Margherita</strong></span>
+                        </div>
+                        <div class="timer" id="timer-1">0.0s</div>
+                    </div>
+                    
+                    <div class="bad-practice-container">
+                        <!-- Dense messy layout with navigation and 40 buttons -->
+                        <div class="mock-nav-bad">
+                            <span>Accueil</span><span>Nos Restos</span><span>À propos</span><span>Galerie</span><span>Presse</span><span>Livre d'or</span><span>Blog</span><span>Recrutement</span><span>Événements</span><span>FAQ</span><span>Contact</span><span>Mentions Légales</span>
+                        </div>
+                        <p class="mock-sub-bad">Sélectionnez le plat de votre choix dans notre catalogue complet (48 plats disponibles dans toutes les catégories mélangées) :</p>
+                        <div class="dense-button-grid" id="bad-grid">
+                            <!-- Populated dynamically by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Transition to Test 2 -->
+                <div id="step-transition" class="experiment-step text-center">
+                    <div class="success-icon">✓ Phase 1 terminée</div>
+                    <h3>Bien joué !</h3>
+                    <p class="step-desc">
+                        Passons maintenant à la seconde phase du test. La consigne reste la même, mais l'interface sera différente.
+                    </p>
+                    <button class="btn btn-primary" onclick="app.startCountdown2()">Passer à la Phase 2</button>
+                </div>
+
+                <!-- Step 4: Pre-test 2 countdown -->
+                <div id="step-countdown-2" class="experiment-step text-center">
+                    <span class="phase-indicator">Phase 2 : Interface épurée</span>
+                    <h3 class="instruction-text">Cherchez et cliquez sur :</h3>
+                    <div class="target-item">🍕 Pizza Margherita</div>
+                    <p class="countdown-msg">Le test commence dans...</p>
+                    <div class="countdown-number" id="countdown-val-2">3</div>
+                </div>
+
+                <!-- Step 5: Test 2 (Good Practice UI) -->
+                <div id="step-test-2" class="experiment-step">
+                    <div class="test-header">
+                        <div>
+                            <span class="phase-indicator">Phase 2 : Interface épurée</span>
+                            <span class="instruction-prompt">Trouvez : <strong class="highlight-target">🍕 Pizza Margherita</strong></span>
+                        </div>
+                        <div class="timer" id="timer-2">0.0s</div>
+                    </div>
+                    
+                    <div class="good-practice-container">
+                        <!-- Clean UI with tabs -->
+                        <div class="mock-nav-good">
+                            <div class="mock-logo">🍕 Presto</div>
+                            <div class="mock-links">
+                                <span class="active">Menu</span><span>Événements</span><span>Contact</span>
+                            </div>
+                        </div>
+                        
+                        <div class="good-layout">
+                            <aside class="good-sidebar">
+                                <button class="sidebar-tab" id="tab-entrees" onclick="app.switchGoodTab('entrees')">🥗 Entrées</button>
+                                <button class="sidebar-tab active" id="tab-plats" onclick="app.switchGoodTab('plats')">🍝 Plats Chauds</button>
+                                <button class="sidebar-tab" id="tab-desserts" onclick="app.switchGoodTab('desserts')">🍰 Desserts</button>
+                            </aside>
+                            
+                            <main class="good-content">
+                                <div id="good-products-container" class="products-grid">
+                                    <!-- Populated dynamically by JS based on selected tab -->
+                                </div>
+                            </main>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 6: Results -->
+                <div id="step-results" class="experiment-step">
+                    <div class="text-center">
+                        <span class="badge badge-success">Analyse des scores</span>
+                        <h3 class="results-title">La Loi de Hick en Chiffres</h3>
+                    </div>
+                    
+                    <div class="results-grid">
+                        <div class="result-card bad">
+                            <span class="result-label">Phase 1 : Interface surchargée (48 choix)</span>
+                            <div class="result-time" id="result-time-bad">-- s</div>
+                            <p class="result-desc">Temps de recherche long dû à la surcharge d'informations et au manque de hiérarchie visuelle.</p>
+                        </div>
+                        
+                        <div class="result-card good">
+                            <span class="result-label">Phase 2 : Interface épurée (3 choix par onglet)</span>
+                            <div class="result-time" id="result-time-good">-- s</div>
+                            <p class="result-desc">Temps réduit au minimum grâce à la catégorisation claire et à la réduction des options visibles.</p>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <div class="chart-title">Comparaison du temps de décision</div>
+                        <div class="bar-chart">
+                            <div class="bar-row">
+                                <span class="bar-label">Surchargé</span>
+                                <div class="bar-track">
+                                    <div class="bar-fill bad" id="bar-bad" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            <div class="bar-row">
+                                <span class="bar-label">Épuré</span>
+                                <div class="bar-track">
+                                    <div class="bar-fill good" id="bar-good" style="width: 20%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-summary" id="chart-summary-text">
+                            Chargement des résultats...
+                        </div>
+                    </div>
+
+                    <div class="pedagogic-explanation">
+                        <h4>Que s'est-il passé ?</h4>
+                        <p>
+                            Votre cerveau a dû scanner les boutons un à un dans la première phase car ils avaient tous la même importance visuelle. 
+                            Dans la seconde phase, le tri par onglet a réduit le nombre de choix simultanés à <strong>3 options</strong>, vous permettant d'identifier immédiatement la bonne pizza.
+                        </p>
+                        <p class="hick-formula">
+                            <strong>Formule mathématique de Hick :</strong> <span class="formula">T = b · log₂(n + 1)</span><br>
+                            Le temps de réaction <span class="formula">T</span> augmente de manière <em>logarithmique</em> avec le nombre d'alternatives <span class="formula">n</span>. 
+                            Chaque option supplémentaire augmente le coût cognitif.
+                        </p>
+                    </div>
+
+                    <div class="text-center" style="margin-top: 2rem;">
+                        <button class="btn btn-secondary" onclick="app.resetExperiment()">Recommencer le test</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2 : VISUAL COMPARISON -->
+        <section class="card comparison-section">
+            <div class="card-header-split">
+                <div>
+                    <h2>Comparaison interactive sur un site web</h2>
+                    <p>Découvrez comment appliquer cette loi sur les pages d'accueil de vos projets. Cliquez sur les points oranges pour analyser le design.</p>
+                </div>
+                <div class="toggle-container">
+                    <button class="toggle-btn active" id="btn-show-bad" onclick="app.switchMockup('bad')">❌ Mauvaise Pratique</button>
+                    <button class="toggle-btn" id="btn-show-good" onclick="app.switchMockup('good')">✅ Bonne Pratique</button>
+                </div>
+            </div>
+            
+            <div class="card-body" style="position: relative;">
+                <!-- BAD MOCKUP -->
+                <div id="mockup-bad" class="mockup-view active">
+                    <div class="mockup-browser-header">
+                        <span class="browser-dot red"></span>
+                        <span class="browser-dot yellow"></span>
+                        <span class="browser-dot green"></span>
+                        <div class="browser-address">https://www.monsite-charge-de-choix.com</div>
+                    </div>
+                    
+                    <div class="mockup-content">
+                        <!-- Header bad -->
+                        <header class="mock-site-header-bad">
+                            <div class="mock-site-logo">MultiCorp</div>
+                            <nav class="mock-site-nav-bad">
+                                <a href="#">Accueil</a>
+                                <a href="#">Produits</a>
+                                <a href="#">Solutions</a>
+                                <a href="#">Tarifs</a>
+                                <a href="#">Entreprise</a>
+                                <a href="#">Ressources</a>
+                                <a href="#">Blog</a>
+                                <a href="#">FAQ</a>
+                                <a href="#">Contact</a>
+                                <a href="#">Partenaires</a>
+                                <a href="#">Support</a>
+                                <a href="#">Connexion</a>
+                                <a href="#" class="btn-mock-bad-nav">Démo gratuite</a>
+                            </nav>
+                            <span class="hotspot hotspot-nav-bad" onclick="app.showTooltip('nav-bad', this)">1</span>
+                        </header>
+                        
+                        <!-- Hero bad -->
+                        <section class="mock-hero-bad">
+                            <h1>Découvrez la puissance de notre suite logicielle tout-en-un</h1>
+                            <p>Nous fournissons 250 outils collaboratifs différents pour vous aider à travailler au quotidien.</p>
+                            
+                            <div class="mock-hero-actions-bad">
+                                <button class="btn-bad-hero" onclick="alert('Action cliquée')">Commencer maintenant</button>
+                                <button class="btn-bad-hero" onclick="alert('Action cliquée')">Voir les tarifs</button>
+                                <button class="btn-bad-hero" onclick="alert('Action cliquée')">Nous contacter</button>
+                                <button class="btn-bad-hero" onclick="alert('Action cliquée')">Télécharger la démo</button>
+                                <span class="hotspot hotspot-hero-bad" onclick="app.showTooltip('hero-bad', this)">2</span>
+                            </div>
+                        </section>
+
+                        <!-- Features bad -->
+                        <section class="mock-features-bad">
+                            <h3>Toutes nos fonctionnalités (Choisissez celle que vous voulez !)</h3>
+                            <div class="mock-features-grid-bad">
+                                <div class="feat-box-bad">Rapports personnalisés</div>
+                                <div class="feat-box-bad">Sécurité renforcée</div>
+                                <div class="feat-box-bad">Chat d'équipe</div>
+                                <div class="feat-box-bad">Calendrier partagé</div>
+                                <div class="feat-box-bad">Stockage Cloud</div>
+                                <div class="feat-box-bad">Intégrations API</div>
+                                <div class="feat-box-bad">Analyse de ventes</div>
+                                <div class="feat-box-bad">Campagnes Emails</div>
+                            </div>
+                            <span class="hotspot hotspot-features-bad" onclick="app.showTooltip('features-bad', this)">3</span>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- GOOD MOCKUP -->
+                <div id="mockup-good" class="mockup-view">
+                    <div class="mockup-browser-header">
+                        <span class="browser-dot red"></span>
+                        <span class="browser-dot yellow"></span>
+                        <span class="browser-dot green"></span>
+                        <div class="browser-address">https://www.monsite-epure.com</div>
+                    </div>
+                    
+                    <div class="mockup-content">
+                        <!-- Header good -->
+                        <header class="mock-site-header-good">
+                            <div class="mock-site-logo">✨ SoloCorp</div>
+                            <nav class="mock-site-nav-good">
+                                <a href="#">Produits</a>
+                                <a href="#">Tarifs</a>
+                                <a href="#">Contact</a>
+                            </nav>
+                            <div class="mock-site-actions-good">
+                                <a href="#" class="btn-mock-text">Connexion</a>
+                                <a href="#" class="btn-mock-primary">Essai gratuit</a>
+                            </div>
+                            <span class="hotspot hotspot-nav-good" onclick="app.showTooltip('nav-good', this)">1</span>
+                        </header>
+                        
+                        <!-- Hero good -->
+                        <section class="mock-hero-good">
+                            <h1>Un seul outil pour libérer votre équipe</h1>
+                            <p>Simplifiez vos processus de travail avec notre plateforme de collaboration moderne.</p>
+                            
+                            <div class="mock-hero-actions-good">
+                                <button class="btn-good-hero-primary" onclick="alert('Action principale cliquée !')">Commencer gratuitement</button>
+                                <button class="btn-good-hero-secondary" onclick="alert('Action secondaire cliquée !')">Voir la démo →</button>
+                                <span class="hotspot hotspot-hero-good" onclick="app.showTooltip('hero-good', this)">2</span>
+                            </div>
+                        </section>
+
+                        <!-- Features good -->
+                        <section class="mock-features-good">
+                            <div class="mock-features-grid-good">
+                                <div class="feat-box-good">
+                                    <div class="feat-icon">📊</div>
+                                    <h4>Centralisez</h4>
+                                    <p>Suivez vos projets et vos rapports au même endroit.</p>
+                                </div>
+                                <div class="feat-box-good">
+                                    <div class="feat-icon">💬</div>
+                                    <h4>Communiquez</h4>
+                                    <p>Échangez en temps réel avec toute votre équipe.</p>
+                                </div>
+                                <div class="feat-box-good">
+                                    <div class="feat-icon">🔒</div>
+                                    <h4>Sécurisez</h4>
+                                    <p>Vos données sont protégées au plus haut standard.</p>
+                                </div>
+                            </div>
+                            <span class="hotspot hotspot-features-good" onclick="app.showTooltip('features-good', this)">3</span>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Explanation Tooltip Overlay -->
+                <div class="tooltip-container" id="tooltip-box">
+                    <div class="tooltip-header">
+                        <span class="tooltip-badge" id="tooltip-badge">Point clé</span>
+                        <button class="tooltip-close" onclick="app.closeTooltip()">×</button>
+                    </div>
+                    <div class="tooltip-text" id="tooltip-text">
+                        Cliquez sur les numéros orange pour afficher les explications pédagogiques.
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container text-center">
+            <p>Conçu pour les cours de design d'interface et d'expérience utilisateur (UI/UX).</p>
+            <p class="copyright">&copy; 2026 - Démo Pédagogique Loi de Hick</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>
